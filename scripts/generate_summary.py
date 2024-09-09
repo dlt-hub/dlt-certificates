@@ -13,14 +13,14 @@ def create_summary_markdown(
         if regenerate:
             file.write("# Certificates\n\n")
             file.write(
-                "| Certificate Holder ID | Holder Name | Certificate Name | Certified at | Valid Until | Holder GitHub | Contacts |\n"
+                "| Certificate ID | Certificate Holder ID | Holder Name | Certificate Name | Certified at | Valid Until | Holder GitHub | Contacts |\n"
             )
-            file.write("| --- | --- | --- | --- | --- | --- | --- |\n")
+            file.write("| --- | --- | --- | --- | --- | --- | --- | --- |\n")
 
         # Write data for each certificate holder
         for data in certificate_data:
             file.write(
-                f"| {data['certificate_holder_id']} | {data['user_name']} | {data['certificate_name']} | {data['certified_at']} | {data['valid_until']} | {data['github']} | {data['contact']} |\n"
+                f"| {data['certificate_id']} | {data['certificate_holder_id']} | {data['user_name']} | {data['certificate_name']} | {data['certified_at']} | {data['valid_until']} | {data['github']} | {data['contact']} |\n"
             )
 
 
@@ -52,4 +52,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     users = read_jsonl(args.users_file)
+
     create_summary_markdown(args.certificates_output_file, users, args.regenerate)

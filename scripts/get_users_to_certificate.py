@@ -4,9 +4,10 @@ import os
 from datetime import datetime
 from typing import Any, Iterator, List
 
-from generate_unique_id import generate_hash
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
+
+from generate_unique_id import generate_hash
 
 # set -a && source .env && set +a
 SHEET_ID = os.getenv("SHEET_ID")
@@ -62,9 +63,14 @@ def get_both_passed_users(user_data: Iterator, certificates_data: dict) -> List[
 
     personal_info = []
     for email in passed:
-        unique_id = generate_hash(email, SALT)
+        unique_user_id = generate_hash(email, SALT)
+        # hash(course name + user uid + salt)
+        certificate_id = generate_hash(
+            f"{certificates_data["course"]["name"]}-{unique_user_id}", SALT
+        )
         user = {
-            "certificate_holder_id": unique_id,
+            "certificate_id": certificate_id,
+            "certificate_holder_id": unique_user_id,
             "user_name": emails_names[email],
             "github": "TBA",
             "contact": "TBA",
@@ -85,13 +91,20 @@ if __name__ == "__main__":
         prog="User Details Extractor",
         description="Generates JSONL file with extracted from Google Sheets user details.",
     )
-    parser.add_argument("output_file", type=str, help="Output file path, e.g. 'people.json'")
+    parser.add_argument(
+        "output_file", type=str, help="Output file path, e.g. 'people.json'"
+    )
     args = parser.parse_args()
 
     today = datetime.today()
 
     certificate_info = {
-        "course_name": "Workshop: ELT with DLT",
+        "course": {
+            "name": "Workshop: ELT with DLT",
+            "url": "https://github.com/dlt-hub/dlthub-education/tree/main/workshops/workshop_august_2024",
+            "image_url": "",
+        },
+        "issuer": {"name": "dltHub", "url": "https://dlthub.com/"},
         "certificate_name": "dlt Advanced ELT Specialist",
         "certified_at": today.strftime("%B %Y"),
         "valid_until": "No expiration",
