@@ -1,3 +1,4 @@
+import argparse
 import json
 import os
 from datetime import datetime
@@ -74,13 +75,18 @@ def get_both_passed_users(user_data: Iterator, certificates_data: dict) -> List[
     return personal_info
 
 
-def save_info_as_json(file_path: str, data: List[dict]) -> None:
+def save_info_as_json(data: List[dict], file_path: str) -> None:
     with open(file_path, "w", encoding="utf-8") as file:
         json.dump(data, file, ensure_ascii=False, indent=4)
 
 
 if __name__ == "__main__":
-    people_path = "people.json"
+    parser = argparse.ArgumentParser(
+        prog="User Details Extractor",
+        description="Generates JSONL file with extracted from Google Sheets user details.",
+    )
+    parser.add_argument("output_file", type=str, help="Output file path, e.g. 'people.json'")
+    args = parser.parse_args()
 
     today = datetime.today()
 
@@ -100,4 +106,4 @@ if __name__ == "__main__":
 
     users_info = get_both_passed_users(sheet_data, certificate_info)
 
-    save_info_as_json(people_path, users_info)
+    save_info_as_json(users_info, args.output_file)
