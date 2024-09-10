@@ -4,11 +4,11 @@ from typing import List
 
 
 def create_summary_markdown(
-    file_path: str, certificate_data: List[dict], regenerate: bool = False
+    md_file_path: str, certificate_data: List[dict], regenerate: bool = False
 ) -> None:
     mode = "w" if regenerate else "a"
 
-    with open(file_path, mode, encoding="utf-8") as file:
+    with open(md_file_path, mode, encoding="utf-8") as file:
         # If regenerating, we write the headers first
         if regenerate:
             file.write("# Certificates\n\n")

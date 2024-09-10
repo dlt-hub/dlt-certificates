@@ -1,0 +1,10 @@
+{
+    "course": {
+        "name": "Workshop: ELT with DLT",
+        "url": "https://github.com/dlt-hub/dlthub-education/tree/main/workshops/workshop_august_2024",
+        "image_url": "../badges/advanced_etl_specialist.png"
+    },
+    "issuer": {"name": "dltHub", "url": "https://dlthub.com/"},
+    "certificate_name": "dlt Advanced ELT Specialist",
+    "valid_until": "No expiration"
+}

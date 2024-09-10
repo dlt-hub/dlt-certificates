@@ -1,62 +1,20 @@
 [
   {
-    "certificate_id": "a3b8d5ffg87hf9dg30hfg50j0hj34vs7e9cb5f0",
     "certificate_holder_id": "123099df0hhf0f8h8klh0ll009jkl9gd999h3h5",
     "user_name": "Alice Johnson",
     "github": "https://github.com/alicejohnson",
-    "contact": "https://www.linkedin.com/in/alicejohnson",
-    "course": {
-        "name": "Certified Cloud Architect Masterclass",
-        "url": "https://courses.cloudacademy.com/cloud-architect",
-        "image_url": "https://example.com/images/cloud_architect.jpg"
-    },
-    "issuer": {
-        "name": "Cloud Academy",
-        "url": "https://cloudacademy.com"
-    },
-    "certificate_name": "Certified Cloud Solutions Architect",
-    "certified_at": "July 2024",
-    "valid_until": "No expiration",
-    "created_at": "2024-07-15T14:22:10.123456"
+    "contact": "https://www.linkedin.com/in/alicejohnson"
   },
   {
-    "certificate_id": "b9c8k5eeh87f9bg90hfg60j0kjf34vs6e8dc4f9",
     "certificate_holder_id": "456799ab0iih1i9i9mni0mm010mnm9lf888k4k6",
     "user_name": "Bob Smith",
     "github": "https://github.com/bobsmith",
-    "contact": "https://www.linkedin.com/in/bobsmith",
-    "course": {
-        "name": "Advanced Data Science Bootcamp",
-        "url": "https://datascienceinstitute.com/bootcamp",
-        "image_url": "https://example.com/images/data_science_bootcamp.jpg"
-    },
-    "issuer": {
-        "name": "Data Science Institute",
-        "url": "https://datascienceinstitute.com"
-    },
-    "certificate_name": "Certified Data Science Professional",
-    "certified_at": "May 2024",
-    "valid_until": "May 2029",
-    "created_at": "2024-05-20T09:30:00.654321"
+    "contact": "https://www.linkedin.com/in/bobsmith"
   },
   {
-    "certificate_id": "f6d8e5ccf56h8dg90hfg70k0lkj34vs5f8eb6g7",
     "certificate_holder_id": "789099cd0jjj2j0j0ono0oo021ono9mg777l5l7",
     "user_name": "Cindy Lee",
     "github": "https://github.com/cindylee",
-    "contact": "https://www.linkedin.com/in/cindylee",
-    "course": {
-        "name": "Full-Stack Developer Workshop",
-        "url": "https://fullstackacademy.com/workshops",
-        "image_url": "https://example.com/images/full_stack_developer.jpg"
-    },
-    "issuer": {
-        "name": "Full Stack Academy",
-        "url": "https://fullstackacademy.com"
-    },
-    "certificate_name": "Certified Full-Stack Developer",
-    "certified_at": "August 2024",
-    "valid_until": "August 2029",
-    "created_at": "2024-08-10T17:45:30.789012"
+    "contact": "https://www.linkedin.com/in/cindylee"
   }
 ]
