@@ -1,12 +1,14 @@
 import argparse
-import json
 import os
 from typing import Any, Iterator, List
 
+import pandas as pd
+import pendulum
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 
 from generate_unique_id import generate_hash
+from utils import save_info_as_json
 
 # set -a && source .env && set +a
 SHEET_ID = os.getenv("SHEET_ID")
@@ -52,32 +54,34 @@ def get_credentials(credentials_info: str | dict) -> Any:
     return credentials
 
 
-def get_both_passed_users(user_data: Iterator) -> List[dict]:
-    emails_names = {}
-    passed = []
-    for row in user_data:
-        emails_names[row.get("email_part1")] = row.get("full_name")
-        if row.get("email_both"):
-            passed.append(row.get("email_both"))
+def get_both_passed_users(user_data: Iterator) -> pd.DataFrame:
+    df = pd.DataFrame(user_data)
+    part1 = df.iloc[:, :4]
+    part2 = df.iloc[:, 4:7]
+    both = part1.merge(
+        part2, how="inner", left_on="email_part1", right_on="email_part2"
+    ).drop_duplicates(subset=["email_part1"], keep="last")
+    both["passed_at_part2"] = both["passed_at_part2"].apply(
+        lambda x: pendulum.parse(x, strict=False).isoformat()
+    )
 
+    return both
+
+
+def transform_users_with_uid(df: pd.DataFrame) -> List[dict]:
     personal_info = []
-    for email in passed:
-        unique_user_id = generate_hash(email, SALT)
-
+    for i, row in df.iterrows():
+        unique_user_id = generate_hash(row["email_part2"], SALT)
         user = {
             "certificate_holder_id": unique_user_id,
-            "user_name": emails_names[email],
+            "user_name": row["full_name_part1"],
+            "passed_at": row["passed_at_part2"],
             "github": "TBA",
             "contact": "TBA",
         }
         personal_info.append(user)
 
     return personal_info
-
-
-def save_info_as_json(data: List[dict], file_path: str) -> None:
-    with open(file_path, "w", encoding="utf-8") as file:
-        json.dump(data, file, ensure_ascii=False, indent=4)
 
 
 if __name__ == "__main__":
@@ -96,6 +100,7 @@ if __name__ == "__main__":
         sheet_name=SHEET_NAME,
     )
 
-    users_info = get_both_passed_users(sheet_data)
+    users_df = get_both_passed_users(sheet_data)
+    users_info = transform_users_with_uid(users_df)
 
     save_info_as_json(users_info, args.output_file)

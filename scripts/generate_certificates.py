@@ -1,11 +1,10 @@
 import argparse
-import json
 import os
 from datetime import datetime
-from typing import List
 
 from generate_summary import create_summary_markdown
 from generate_unique_id import generate_hash
+from utils import read_jsonl, save_info_as_json
 
 SALT = os.getenv("SALT")
 
@@ -75,12 +74,6 @@ def create_certificate_files(user_data_list, certificate_info, output_directory)
     return all_info
 
 
-def read_jsonl(file_path: str) -> List[dict]:
-    with open(file_path) as f:
-        data = json.load(f)
-    return data
-
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         prog="Certificate Generator",
@@ -91,11 +84,24 @@ if __name__ == "__main__":
         "certificate_info_file", type=str, help="JSON file with certificate info"
     )
     parser.add_argument(
-        "-o",
+        "-od",
         "--output_directory",
         type=str,
         default="../certificates/technical_certification",
         help="Output file for generated certificates",
+    )
+    parser.add_argument(
+        "-r",
+        "--regenerate",
+        action="store_true",
+        help="Regenerate certificates summary based on `users_file`",
+    )
+    parser.add_argument(
+        "-osf",
+        "--output_summary_file",
+        type=str,
+        default="../README.md",
+        help="Output file for generated certificates summary",
     )
     args = parser.parse_args()
 
@@ -106,7 +112,9 @@ if __name__ == "__main__":
         users, certificate_info, args.output_directory
     )
     create_summary_markdown(
-        md_file_path="../README.md",
+        md_file_path=args.output_summary_file,
         certificate_data=all_certificates_data,
-        regenerate=True,
+        regenerate=args.regenerate,
     )
+
+    save_info_as_json(all_certificates_data, "./all_certificates_data.json")

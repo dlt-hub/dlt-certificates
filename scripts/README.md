@@ -3,7 +3,7 @@
 ## Table of Contents
 
 - [Overview](#overview)
-- [Preparing User Data](#preparing-user-data)
+- [User Details Extractor](#user-details-extractor)
 - [Generating Markdown Certificates](#generating-markdown-certificates)
 - [Generating Certificates Summary](#generating-certificates-summary)
 
@@ -11,38 +11,10 @@
 This guide describes how to generate certificates from user data extracted automatically 
 from Google Sheets and generate a structured Markdown file listing certificate holders.
 
-## Preparing User Data
 
-### Data Structure
-Ensure your data conforms to the following JSON structure:
-```json
-[
-    {
-        "certificate_id": "c5989d5ffg09hf9dg90hfg90h0fg4c3deebb27a",
-        "certificate_holder_id": "682099if0ggf0f9h9ngh0hg009hgh9gd617b2",
-        "user_name": "First_Name Last_Name",
-        "github": "GitHub account url (e.g. https://github.com/gvanrossum)",
-        "contact": "Any contact details (e.g. Linkedin url)",
-        "course": {
-            "name": "Workshop: ELT with DLT",
-            "url": "https://github.com/dlt-hub/dlthub-education/tree/main/workshops/workshop_august_2024",
-            "image_url": ""
-        },
-        "issuer": {
-            "name": "dltHub", 
-            "url": "https://dlthub.com/"
-        },
-        "certificate_name": "Certificate name (e.g. dlt Advanced ELT Specialist)",
-        "certified_at": "Month Year (e.g. September 2024)",
-        "valid_until": "Month Year (or No expiration)",
-        "created_at": "2024-09-09T11:32:05.776872"
-    },
-    // Additional records...
-]
-```
-
-### User Details Extractor
-The script `scripts/get_users_to_certificate.py` is used to extract participant data from a Google Sheet, which is linked to Google Form, and generates a JSONL file formatted as shown above.
+## User Details Extractor
+The script `scripts/get_users_to_certificate.py` is used to extract participant data from a Google Sheet, 
+which is linked to Google Form, and generates a JSONL file formatted as [below](#output-format).
 
 #### Generating Unique IDs
 To generate unique IDs for each certificate holder, the `generate_hash` function (from `scripts/generate_unique_id.py`) uses the [hashlib library](https://docs.python.org/3/library/hashlib.html).
@@ -75,31 +47,22 @@ The script outputs a JSONL file where each line corresponds to a user's certific
 
 - Unique user and certificate IDs
 - User's name, contact, and GitHub URL
+- Date when the second Homework was done.
 - Course details, issuer information, and certification period
 
 Here's an example of what a line in the JSONL file might look like:
 
 ```json
-{
-  "certificate_id": "generated_certificate_id_here",
-  "certificate_holder_id": "generated_user_id_here",
-  "user_name": "John Doe",
-  "github": "https://github.com/johndoe",
-  "contact": "https://www.linkedin.com/in/johndoe",
-  "course": {
-    "name": "Workshop: ELT with DLT",
-    "url": "https://github.com/dlt-hub/dlthub-education/tree/main/workshops/workshop_august_2024",
-    "image_url": ""
+[
+  {
+    "certificate_holder_id": "123099df0hhf0f8h8klh0ll009jkl9gd999h3h5",
+    "user_name": "Alice Johnson",
+    "passed_at": "2024-08-30T18:04:44+00:00",
+    "github": "https://github.com/alicejohnson",
+    "contact": "https://www.linkedin.com/in/alicejohnson"
   },
-  "issuer": {
-    "name": "dltHub",
-    "url": "https://dlthub.com/"
-  },
-  "certificate_name": "dlt Advanced ELT Specialist",
-  "certified_at": "September 2024",
-  "valid_until": "No expiration",
-  "created_at": "2024-09-09T18:11:04.710717"
-}
+  // Additional records...
+]
 ```
 
 ## Generating Markdown Certificates
@@ -107,31 +70,56 @@ Here's an example of what a line in the JSONL file might look like:
 The `scripts/generate_certificates.py` script automates the creation of personalized certificates in Markdown format. 
 It reads user data from a JSON file and generates a Markdown file for each user with a detailed certificate.
 
+The certificates include details like the user's name, the course they've completed, 
+the issuing authority, and a unique certificate ID. 
+The script also provides an option to regenerate a summary of all generated certificates.
+
 ### Usage
 
-To use the script, you must have a JSON file with user data structured according to the expected format (see [above](#data-structure) for format details). 
+To use the script, you must have a **JSON file with user data** structured according to the expected format (see [above](#output-format) for format details)
+and **JSON file with certification data** with format:
+```json
+{
+    "course": {
+        "name": "Workshop: ELT with DLT",
+        "url": "https://github.com/dlt-hub/dlthub-education/tree/main/workshops/workshop_august_2024",
+        "image_url": "../badges/advanced_etl_specialist.png"
+    },
+    "issuer": {"name": "dltHub", "url": "https://dlthub.com/"},
+    "certificate_name": "dlt Advanced ELT Specialist",
+    "valid_until": "No expiration"
+}
+```
 The script is run from the command line as follows:
 
 ```bash
-python generate_certificates.py [path_to_user_data_file] -o [output_directory]
+python generate_certificates.py <users_file> <certificate_info_file> [options]
 ```
 
 ### Command Line Arguments
 
-- `users_file`: Specifies the path to the JSON file containing user data.
-- `-o`, `--output_directory`: (Optional) Specifies the directory where the certificate Markdown files will be saved. Default is `../certificates/technical_certification`.
+#### Arguments
 
-### Output
+- `<users_file>`: Path to the JSON file containing user data.
+- `<certificate_info_file>`: Path to the JSON file containing certificate info.
 
-The script generates a Markdown file for each entry in the JSON file. 
-These files are saved to the specified output directory, named using the `certificate_id` of each user.
+#### Options
+
+- `-od, --output_directory`: Path where the generated certificates will be stored. Default is `../certificates/technical_certification`.
+- `-r, --regenerate`: If this flag is set, the script regenerates the certificates summary based on the `users_file`.
+- `-osf, --output_summary_file`: Path where the summary file of all generated certificates will be written. Default is `../README.md`.
+- 
+## Output
+
+1. **Generated Certificate**: A markdown file will be created for each user in the specified output directory, named using the `certificate_id` of each user.
+2. **Certificate Summary**: An optional markdown summary file can be updated or re-created if the `--regenerate` flag is used.
 
 ### Example
 
 Running the script with an example command:
 
 ```bash
-cd scripts && python generate_certificates.py test_users.json -o ../certificates/technical_certification
+cd scripts && python generate_certificates.py test_users.json certificate_info.json -od ../certificates/technical_certification -r -osf ../README.md
 ```
 
 This will read `test_users.json`, generate Markdown certificates for each user in the JSON file, 
@@ -171,7 +159,30 @@ python generate_summary.py test_users.json -o output.md
 ```
 
 ### Input Format
-Ensure your JSON file matches the structure provided in the **[Data Structure](#data-structure)** section.
+Ensure your JSON file matches the structure as follows:
+```json
+[
+    {
+        "certificate_holder_id": "123099df0hhf0f8h8klh0ll009jkl9gd999h3h5",
+        "user_name": "Alice Johnson",
+        "github": "https://github.com/alicejohnson",
+        "contact": "https://www.linkedin.com/in/alicejohnson",
+        "course": {
+            "name": "Workshop: ELT with DLT",
+            "url": "https://github.com/dlt-hub/dlthub-education/tree/main/workshops/workshop_august_2024",
+            "image_url": "../badges/advanced_etl_specialist.png"
+        },
+        "issuer": {
+            "name": "dltHub",
+            "url": "https://dlthub.com/"
+        },
+        "certificate_name": "dlt Advanced ELT Specialist",
+        "valid_until": "No expiration",
+        "certificate_id": "3951e4f32af466f7dfec5a1053f4d0ac5f2d7143c599d7ada2b6bff0e28e4521",
+        "certified_at": "September 2024",
+        "created_at": "2024-09-11T16:53:02.417924"
+    },
+```
 
 ### Output Format
 The script outputs a Markdown file with certificate details formatted in a table with headers: "Certificate ID", "Certificate Holder ID", "Holder Name", "Certificate Name", "Certified at", "Valid Until", "Holder GitHub", and "Contacts".
