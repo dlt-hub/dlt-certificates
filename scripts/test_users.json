@@ -2,18 +2,21 @@
   {
     "certificate_holder_id": "123099df0hhf0f8h8klh0ll009jkl9gd999h3h5",
     "user_name": "Alice Johnson",
+    "level": 3,
     "github": "https://github.com/alicejohnson",
     "contact": "https://www.linkedin.com/in/alicejohnson"
   },
   {
     "certificate_holder_id": "456799ab0iih1i9i9mni0mm010mnm9lf888k4k6",
     "user_name": "Bob Smith",
+    "level": 3,
     "github": "https://github.com/bobsmith",
     "contact": "https://www.linkedin.com/in/bobsmith"
   },
   {
     "certificate_holder_id": "789099cd0jjj2j0j0ono0oo021ono9mg777l5l7",
     "user_name": "Cindy Lee",
+    "level": 3,
     "github": "https://github.com/cindylee",
     "contact": "https://www.linkedin.com/in/cindylee"
   }

@@ -8,12 +8,16 @@ from utils import read_jsonl, save_info_as_json
 
 SALT = os.getenv("SALT")
 
+stars = '<img src="../badges/star.png" width="48">'
+
 
 def generate_markdown_certificate(user_data):
     markdown_template = f"""
 # Certificate of Achievement: {user_data['certificate_name']}
 
 ## Awarded to **{user_data['user_name']}**
+
+{user_data["level"]*stars}
 
 ![Course Image]({user_data['course']['image_url']})
 

@@ -57,7 +57,7 @@ def get_credentials(credentials_info: str | dict) -> Any:
 def get_both_passed_users(user_data: Iterator) -> pd.DataFrame:
     df = pd.DataFrame(user_data)
     part1 = df.iloc[:, :4]
-    part2 = df.iloc[:, 4:7]
+    part2 = df.iloc[:, 4:8]
     both = part1.merge(
         part2, how="inner", left_on="email_part1", right_on="email_part2"
     ).drop_duplicates(subset=["email_part1"], keep="last")
@@ -75,6 +75,7 @@ def transform_users_with_uid(df: pd.DataFrame) -> List[dict]:
         user = {
             "certificate_holder_id": unique_user_id,
             "user_name": row["full_name_part1"],
+            "level": row.get("stars", 0),
             "passed_at": row["passed_at_part2"],
             "github": "TBA",
             "contact": "TBA",

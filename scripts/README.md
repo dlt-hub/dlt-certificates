@@ -57,6 +57,7 @@ Here's an example of what a line in the JSONL file might look like:
   {
     "certificate_holder_id": "123099df0hhf0f8h8klh0ll009jkl9gd999h3h5",
     "user_name": "Alice Johnson",
+    "level": 3,
     "passed_at": "2024-08-30T18:04:44+00:00",
     "github": "https://github.com/alicejohnson",
     "contact": "https://www.linkedin.com/in/alicejohnson"
@@ -165,6 +166,7 @@ Ensure your JSON file matches the structure as follows:
     {
         "certificate_holder_id": "123099df0hhf0f8h8klh0ll009jkl9gd999h3h5",
         "user_name": "Alice Johnson",
+        "level": 3,
         "github": "https://github.com/alicejohnson",
         "contact": "https://www.linkedin.com/in/alicejohnson",
         "course": {
