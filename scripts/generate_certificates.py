@@ -1,6 +1,7 @@
 import argparse
 import os
 import pendulum
+from typing import List
 
 from generate_summary import create_summary_markdown
 from generate_unique_id import generate_hash
@@ -11,7 +12,7 @@ SALT = os.getenv("SALT")
 stars = '<img src="../badges/star.png" width="48">'
 
 
-def generate_markdown_certificate(user_data):
+def generate_markdown_certificate(user_data: dict) -> str:
     markdown_template = f"""
 # Certificate of Achievement: {user_data['certificate_name']}
 
@@ -51,7 +52,7 @@ For more information, please visit [{user_data['issuer']['name']}]({user_data['i
     return markdown_template
 
 
-def create_certificate_files(user_data_list, certificate_info, output_directory):
+def create_certificate_files(user_data_list: List[dict], certificate_info: dict, output_directory: str) -> List[dict]:
     os.makedirs(output_directory, exist_ok=True)
     today = pendulum.today()
     all_info = []
