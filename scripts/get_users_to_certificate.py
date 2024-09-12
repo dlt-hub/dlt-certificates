@@ -72,10 +72,14 @@ def transform_users_with_uid(df: pd.DataFrame) -> List[dict]:
     personal_info = []
     for i, row in df.iterrows():
         unique_user_id = generate_hash(row["email_part2"], SALT)
+        level = int(row.get("stars", 0))
+        if level == 0:
+            continue
+
         user = {
             "certificate_holder_id": unique_user_id,
             "user_name": row["full_name_part1"],
-            "level": row.get("stars", 0),
+            "level": level,
             "passed_at": row["passed_at_part2"],
             "github": "TBA",
             "contact": "TBA",
@@ -103,5 +107,5 @@ if __name__ == "__main__":
 
     users_df = get_both_passed_users(sheet_data)
     users_info = transform_users_with_uid(users_df)
-
+    print(f"{len(users_info)} users extracted")
     save_info_as_json(users_info, args.output_file)
