@@ -2,6 +2,8 @@ import argparse
 import json
 from typing import List
 
+stars = '<img src="certificates/badges/star.png" width="15">'
+
 
 def create_summary_markdown(
     md_file_path: str, certificate_data: List[dict], regenerate: bool = False
@@ -13,14 +15,14 @@ def create_summary_markdown(
         if regenerate:
             file.write("# Certificates\n\n")
             file.write(
-                "| Certificate ID | Certificate Holder ID | Holder Name | Certificate Name | Certified at | Valid Until | Holder GitHub | Contacts |\n"
+                "| Certificate ID | Certificate Holder ID | Holder Name | Certificate Name | Level | Certified at | Valid Until | Holder GitHub | Contacts |\n"
             )
-            file.write("| --- | --- | --- | --- | --- | --- | --- | --- |\n")
+            file.write("| --- | --- | --- | --- | --- | --- | --- | --- | --- |\n")
 
         # Write data for each certificate holder
         for data in certificate_data:
             file.write(
-                f"| {data['certificate_id']} | {data['certificate_holder_id']} | {data['user_name']} | {data['certificate_name']} | {data['certified_at']} | {data['valid_until']} | {data['github']} | {data['contact']} |\n"
+                f"| {data['certificate_id']} | {data['certificate_holder_id']} | {data['user_name']} | {data['certificate_name']} | {stars * data['level']} | {data['certified_at']} | {data['valid_until']} | {data['github']} | {data['contact']} |\n"
             )
 
 
