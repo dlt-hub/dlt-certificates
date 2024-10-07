@@ -1,6 +1,7 @@
 import argparse
 import os
-from datetime import datetime
+import pendulum
+from typing import List
 
 from generate_summary import create_summary_markdown
 from generate_unique_id import generate_hash
@@ -11,7 +12,7 @@ SALT = os.getenv("SALT")
 stars = '<img src="../badges/star.png" width="48">'
 
 
-def generate_markdown_certificate(user_data):
+def generate_markdown_certificate(user_data: dict) -> str:
     markdown_template = f"""
 # Certificate of Achievement: {user_data['certificate_name']}
 
@@ -42,7 +43,7 @@ def generate_markdown_certificate(user_data):
 - **Contact**: {user_data['contact']}
 
 ## Comments
-{user_data['user_name']} has successfully completed the {user_data['course']['name']} and demonstrated exceptional proficiency as a {user_data['certificate_name']}. We commend their dedication and expertise in the field.
+{user_data['user_name']} has successfully completed the {user_data['course']['name']}{user_data["level_comment"]}. We commend their dedication and expertise in the field.
 
 ---
 
@@ -51,11 +52,9 @@ For more information, please visit [{user_data['issuer']['name']}]({user_data['i
     return markdown_template
 
 
-def create_certificate_files(user_data_list, certificate_info, output_directory):
-    import os
-
+def create_certificate_files(user_data_list: List[dict], certificate_info: dict, output_directory: str) -> List[dict]:
     os.makedirs(output_directory, exist_ok=True)
-    today = datetime.today()
+    today = pendulum.today()
     all_info = []
     for user_data in user_data_list:
         user_data.update(certificate_info)
@@ -64,8 +63,13 @@ def create_certificate_files(user_data_list, certificate_info, output_directory)
             f"{user_data['course']['name']}-{user_data['certificate_holder_id']}", SALT
         )
 
-        user_data["certified_at"] = today.strftime("%B %Y")
+        user_data["certified_at"] = pendulum.parse(user_data["passed_at"]).strftime("%B %Y")
         user_data["created_at"] = today.isoformat()
+
+        comment = ""
+        if user_data["level"] == 3:
+            comment = f" and demonstrated exceptional proficiency as a {user_data['certificate_name']}"
+        user_data["level_comment"] = comment
 
         markdown_content = generate_markdown_certificate(user_data)
 
@@ -120,5 +124,12 @@ if __name__ == "__main__":
         certificate_data=all_certificates_data,
         regenerate=args.regenerate,
     )
-
+    print(f"{len(all_certificates_data)} certificates generated successfully.")
     save_info_as_json(all_certificates_data, "./all_certificates_data.json")
+
+    import pandas
+    df = pandas.DataFrame(all_certificates_data)
+    df["First Name"] = df["user_name"].apply(lambda x: x.split(" ")[0])
+    df["Last Name"] = df["user_name"].apply(lambda x: " ".join(x.split(" ")[1:]))
+    df_part = df.loc[:, ("certificate_holder_id", "certificate_id", "certificate_name", "First Name", "Last Name", "email")]
+    df_part.to_csv("to_active_campaign.csv", index=False)
