@@ -76,7 +76,7 @@ def transform_users_with_uid(df: pd.DataFrame) -> List[dict]:
         if level == 0:
             continue
 
-        # if pendulum.parse(row["passed_at_part2"]) <= pendulum.datetime(2024, 9, 17):
+        # if pendulum.parse(row["passed_at_part2"]) <= pendulum.datetime(2024, 9, 19):
         #     continue
 
         user = {
