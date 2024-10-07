@@ -126,3 +126,10 @@ if __name__ == "__main__":
     )
     print(f"{len(all_certificates_data)} certificates generated successfully.")
     save_info_as_json(all_certificates_data, "./all_certificates_data.json")
+
+    import pandas
+    df = pandas.DataFrame(all_certificates_data)
+    df["First Name"] = df["user_name"].apply(lambda x: x.split(" ")[0])
+    df["Last Name"] = df["user_name"].apply(lambda x: " ".join(x.split(" ")[1:]))
+    df_part = df.loc[:, ("certificate_holder_id", "certificate_id", "certificate_name", "First Name", "Last Name", "email")]
+    df_part.to_csv("to_active_campaign.csv", index=False)

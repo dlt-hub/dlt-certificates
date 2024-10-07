@@ -76,11 +76,15 @@ def transform_users_with_uid(df: pd.DataFrame) -> List[dict]:
         if level == 0:
             continue
 
+        # if pendulum.parse(row["passed_at_part2"]) <= pendulum.datetime(2024, 9, 19):
+        #     continue
+
         user = {
             "certificate_holder_id": unique_user_id,
             "user_name": row["full_name_part1"],
             "level": level,
             "passed_at": row["passed_at_part2"],
+            "email": row["email_part2"],
             "github": "TBA",
             "contact": "TBA",
         }
