@@ -147,4 +147,4 @@ if __name__ == "__main__":
             "email",
         ),
     ]
-    df_part.to_csv("to_active_campaign.csv", index=False)
+    df_part.to_csv(f"to_active_campaign_{pendulum.today()}.csv", index=False)
