@@ -1,15 +1,18 @@
 import argparse
 import os
+import sys
 from typing import Any, Iterator, List
 
 import pandas as pd
 import pendulum
+from dotenv import load_dotenv
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 
-from generate_unique_id import generate_hash
-from utils import save_info_as_json
+sys.path.append(os.path.abspath("../"))
+from scripts.utils import generate_hash, save_info_as_json
 
+load_dotenv()
 # set -a && source .env && set +a
 SHEET_ID = os.getenv("SHEET_ID")
 SHEET_NAME = os.getenv("SHEET_NAME")
@@ -56,37 +59,34 @@ def get_credentials(credentials_info: str | dict) -> Any:
 
 def get_both_passed_users(user_data: Iterator) -> pd.DataFrame:
     df = pd.DataFrame(user_data)
-    part1 = df.iloc[:, :4]
-    part2 = df.iloc[:, 4:8]
+    part1 = df.iloc[:, :8]
+    part2 = df.iloc[:, 9:14]
     both = part1.merge(
-        part2, how="inner", left_on="email_part1", right_on="email_part2"
-    ).drop_duplicates(subset=["email_part1"], keep="last")
-    both["passed_at_part2"] = both["passed_at_part2"].apply(
+        part2, how="inner", left_on="email_1", right_on="email_2"
+    ).drop_duplicates(subset=["email_1"], keep="last")
+    both["passed_at_2"] = both["passed_at_2"].apply(
         lambda x: pendulum.parse(x, strict=False).isoformat()
     )
-
+    print(both.loc[:, "email_1"])
     return both
 
 
 def transform_users_with_uid(df: pd.DataFrame) -> List[dict]:
     personal_info = []
     for i, row in df.iterrows():
-        unique_user_id = generate_hash(row["email_part2"], SALT)
+        unique_user_id = generate_hash(row["email_1"], SALT)
         level = int(row.get("stars", 0))
         if level == 0:
             continue
 
-        # if pendulum.parse(row["passed_at_part2"]) <= pendulum.datetime(2024, 9, 19):
-        #     continue
-
         user = {
             "certificate_holder_id": unique_user_id,
-            "user_name": row["full_name_part1"],
+            "user_name": row["name_1"],
             "level": level,
-            "passed_at": row["passed_at_part2"],
-            "email": row["email_part2"],
-            "github": "TBA",
-            "contact": "TBA",
+            "passed_at": row["passed_at_2"],
+            "email": row["email_1"],
+            "github": row["github_1"],
+            "contact": row["contact_1"],
         }
         personal_info.append(user)
 
