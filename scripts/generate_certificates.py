@@ -1,11 +1,11 @@
 import argparse
 import os
-import pendulum
 from typing import List
 
+import pendulum
+
 from generate_summary import create_summary_markdown
-from generate_unique_id import generate_hash
-from utils import read_jsonl, save_info_as_json
+from utils import generate_hash, read_jsonl, save_info_as_json
 
 SALT = os.getenv("SALT")
 
@@ -52,7 +52,9 @@ For more information, please visit [{user_data['issuer']['name']}]({user_data['i
     return markdown_template
 
 
-def create_certificate_files(user_data_list: List[dict], certificate_info: dict, output_directory: str) -> List[dict]:
+def create_certificate_files(
+    user_data_list: List[dict], certificate_info: dict, output_directory: str
+) -> List[dict]:
     os.makedirs(output_directory, exist_ok=True)
     today = pendulum.today()
     all_info = []
@@ -63,7 +65,9 @@ def create_certificate_files(user_data_list: List[dict], certificate_info: dict,
             f"{user_data['course']['name']}-{user_data['certificate_holder_id']}", SALT
         )
 
-        user_data["certified_at"] = pendulum.parse(user_data["passed_at"]).strftime("%B %Y")
+        user_data["certified_at"] = pendulum.parse(user_data["passed_at"]).strftime(
+            "%B %Y"
+        )
         user_data["created_at"] = today.isoformat()
 
         comment = ""
@@ -128,8 +132,19 @@ if __name__ == "__main__":
     save_info_as_json(all_certificates_data, "./all_certificates_data.json")
 
     import pandas
+
     df = pandas.DataFrame(all_certificates_data)
     df["First Name"] = df["user_name"].apply(lambda x: x.split(" ")[0])
     df["Last Name"] = df["user_name"].apply(lambda x: " ".join(x.split(" ")[1:]))
-    df_part = df.loc[:, ("certificate_holder_id", "certificate_id", "certificate_name", "First Name", "Last Name", "email")]
+    df_part = df.loc[
+        :,
+        (
+            "certificate_holder_id",
+            "certificate_id",
+            "certificate_name",
+            "First Name",
+            "Last Name",
+            "email",
+        ),
+    ]
     df_part.to_csv("to_active_campaign.csv", index=False)

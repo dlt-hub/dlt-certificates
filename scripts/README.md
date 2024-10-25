@@ -28,7 +28,7 @@ To generate unique IDs for each certificate holder, the `generate_hash` function
    - Copy `example.env` to `.env`.
    - Populate `.env` with your credentials.
    - Run `set -a && source .env && set +a` to export the environment variables.
-
+   - Share Spreadsheet with Google Service account: `dlt-google-sheets-...@...gserviceaccount.com`
 2. **Execute the Script**:
    ```bash
    python scripts/get_users_to_certificate.py output_file_path_here.json
