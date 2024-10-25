@@ -17,21 +17,23 @@ The script `scripts/get_users_to_certificate.py` is used to extract participant 
 which is linked to Google Form, and generates a JSONL file formatted as [below](#output-format).
 
 #### Generating Unique IDs
-To generate unique IDs for each certificate holder, the `generate_hash` function (from `scripts/generate_unique_id.py`) uses the [hashlib library](https://docs.python.org/3/library/hashlib.html).
+To generate unique IDs for each certificate holder, the `generate_hash` function (from `scripts/utils.py`) uses the [hashlib library](https://docs.python.org/3/library/hashlib.html).
 
 ### Running the Script
+
+Every workshop should have separate directory (e.g. `scripts/workshop_1_aug24`) with `get_users_to_certificate.py` script in it.
+
 1. **Install dependencies**:
    ```shell
    pip install -U google-api-python-client google-auth-httplib2 google-auth-oauthlib
    ```
 1. **Set Up Credentials**:
-   - Copy `example.env` to `.env`.
+   - Copy `example.env` to `<workshop_directory_name>/.env`.
    - Populate `.env` with your credentials.
-   - Run `set -a && source .env && set +a` to export the environment variables.
    - Share Spreadsheet with Google Service account: `dlt-google-sheets-...@...gserviceaccount.com`
 2. **Execute the Script**:
    ```bash
-   python scripts/get_users_to_certificate.py output_file_path_here.json
+   python scripts/<workshop_directory_name>/get_users_to_certificate.py output_file_path_here.json
    ```
    This command will extract data from the specified Google Sheet, process it to generate unique IDs and certificate details, and save the output to `output_file_path_here.json`.
 
@@ -39,7 +41,7 @@ To generate unique IDs for each certificate holder, the `generate_hash` function
    
    For example:
    ```shell
-   cd scripts && python get_users_to_certificate.py test_users.json
+   cd scripts/workshop_1_aug24 && python get_users_to_certificate.py test_users.json
    ```
    
 ### Output Format
@@ -58,7 +60,8 @@ Here's an example of what a line in the JSONL file might look like:
     "certificate_holder_id": "123099df0hhf0f8h8klh0ll009jkl9gd999h3h5",
     "user_name": "Alice Johnson",
     "level": 3,
-    "passed_at": "2024-08-30T18:04:44+00:00",
+    "passed_at": "2024-08-30T18:04:44+00:00", 
+    "email": "alice@gmail.com",
     "github": "https://github.com/alicejohnson",
     "contact": "https://www.linkedin.com/in/alicejohnson"
   },
@@ -120,11 +123,11 @@ python generate_certificates.py <users_file> <certificate_info_file> [options]
 Running the script with an example command:
 
 ```bash
-cd scripts && python generate_certificates.py test_users.json certificate_info.json -od ../certificates/technical_certification -r -osf ../README.md
+cd scripts && python generate_certificates.py test_users.json workshop_1_aug24/certificate_info.json -od ../certificates/technical_certification -r -osf ../README.md
 ```
 
 This will read `test_users.json`, generate Markdown certificates for each user in the JSON file, 
-and save them in the `./certificates/technical_certification` directory.
+and save them in the `../certificates/technical_certification` directory.
 
 
 ## Generating Certificates Summary
