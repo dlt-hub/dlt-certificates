@@ -1,11 +1,14 @@
 import argparse
 import os
 from typing import List
+import sys
 
 import pendulum
 
 from generate_summary import create_summary_markdown
-from utils import generate_hash, read_jsonl, save_info_as_json
+
+sys.path.append(os.path.abspath("../"))
+from scripts.utils import generate_hash, read_jsonl, save_info_as_json
 
 SALT = os.getenv("SALT")
 
@@ -140,4 +143,5 @@ if __name__ == "__main__":
             "email",
         ),
     ]
-    df_part.to_csv(f"to_active_campaign_{pendulum.today()}.csv", index=False)
+    print(df_part)
+    df_part.to_csv(f"to_active_campaign.csv", index=False)
