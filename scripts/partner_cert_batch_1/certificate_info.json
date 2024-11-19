@@ -1,0 +1,10 @@
+{
+    "course": {
+        "name": "Consulting Partner Workshop",
+        "url": "https://dlthub.com/why-dlt",
+        "image_url": "../badges/consulting_partner_badge.png"
+    },
+    "issuer": {"name": "dltHub", "url": "https://dlthub.com/"},
+    "certificate_name": "dlt Certified Consulting Partner",
+    "valid_until": "One year"
+}
