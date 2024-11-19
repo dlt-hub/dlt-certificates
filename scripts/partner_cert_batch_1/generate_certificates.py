@@ -59,7 +59,7 @@ def create_certificate_files(
             f"{user_data['course']['name']}-{user_data['certificate_holder_id']}", SALT
         )
 
-        user_data["certified_at"] = pendulum.parse(user_data["passed_at"],strict=False).strftime(
+        user_data["certified_at"] = pendulum.parse(user_data["passed_at"], strict=False).strftime(
             "%B %Y"
         )
         user_data["created_at"] = today.isoformat()
