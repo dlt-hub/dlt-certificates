@@ -59,14 +59,17 @@ def get_credentials(credentials_info: str | dict) -> Any:
 
 def get_both_passed_users(user_data: Iterator) -> pd.DataFrame:
     df = pd.DataFrame(user_data)
-    part1 = df.iloc[:, :5]
+    part1 = df.iloc[:, :7]
     return part1
 
 def column_transformations(df: pd.DataFrame) -> pd.DataFrame:
     df["user_name"] = df["Email Address"].apply(lambda x: x.split('@')[0])
-    df["email"]=df["Email Address"].apply(lambda x:x.split('@')[-1])
     df["user_name"]=df["user_name"].apply(lambda x: x.split('.')[0])
     df["user_name"]=df["user_name"].str.capitalize()
+    df["company_name"]=df["Email Address"].apply(lambda x: x.split('@')[-1])
+    df["Timestamp"]=df["Timestamp"].str[:9]
+    df['Timestamp'] = df['Timestamp'].str.strip()
+
     return df
 
 def transform_users_with_uid(df: pd.DataFrame) -> List[dict]:
@@ -78,12 +81,12 @@ def transform_users_with_uid(df: pd.DataFrame) -> List[dict]:
             "certificate_holder_id": unique_user_id,
             "user_name": row["user_name"],
             "passed_at": row["Timestamp"],
-            "level": 1,
+            "level": row["Level"],
             "email": row["Email Address"],
             "score": row["Score"],
-            "organization": row["email"],
             "contact": row["Contact"],
-            "last_name": row["Last Name"]
+            "last_name": row["Last Name"],
+            "company_name": row["Company"]
         }
         personal_info.append(user)
 
