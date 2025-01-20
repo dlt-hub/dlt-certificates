@@ -21,6 +21,12 @@ def generate_hash(identifier: str, salt: str, method: str = "sha256") -> str:
     """
     Generates a deterministic hash using the provided identifier, salt, and hash method.
     """
+    if salt is None:
+        raise ValueError("Salt cannot be None")
+
+    if identifier is None:
+        raise ValueError("Identifier cannot be None")
+
     salted_identifier = f"{identifier}{salt}"
     hash_function = hashlib.new(method)
     hash_function.update(salted_identifier.encode("utf-8"))
