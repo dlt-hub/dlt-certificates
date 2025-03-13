@@ -28,12 +28,12 @@ Every workshop should have separate directory (e.g. `scripts/workshop_1_aug24`) 
    pip install -U google-api-python-client google-auth-httplib2 google-auth-oauthlib
    ```
 1. **Set Up Credentials**:
-   - Copy `example.env` to `<workshop_directory_name>/.env`.
+   - Copy `example.env` to `.env`.
    - Populate `.env` with your credentials.
    - Share Spreadsheet with Google Service account: `dlt-google-sheets-...@...gserviceaccount.com`
 2. **Execute the Script**:
    ```bash
-   python scripts/<workshop_directory_name>/get_users_to_certificate.py output_file_path_here.json
+   python get_users_to_certificate.py output_file_path_here.json
    ```
    This command will extract data from the specified Google Sheet, process it to generate unique IDs and certificate details, and save the output to `output_file_path_here.json`.
 
@@ -41,7 +41,7 @@ Every workshop should have separate directory (e.g. `scripts/workshop_1_aug24`) 
    
    For example:
    ```shell
-   cd scripts/workshop_1_aug24 && python get_users_to_certificate.py test_users.json
+   python get_users_to_certificate.py test_users.json
    ```
    
 ### Output Format
@@ -57,13 +57,14 @@ Here's an example of what a line in the JSONL file might look like:
 ```json
 [
   {
-    "certificate_holder_id": "123099df0hhf0f8h8klh0ll009jkl9gd999h3h5",
-    "user_name": "Alice Johnson",
-    "level": 3,
-    "passed_at": "2024-08-30T18:04:44+00:00", 
-    "email": "alice@gmail.com",
-    "github": "https://github.com/alicejohnson",
-    "contact": "https://www.linkedin.com/in/alicejohnson"
+     "certificate_holder_id": "123099df0hhf0f8h8klh0ll009jkl9gd999h3h5",
+     "user_name": "Alice Johnson",
+     "passed_at": "2025-03-07T15:07:25+00:00",
+     "email": "alice@gmail.com",
+     "github": "https://github.com/alicejohnson",
+     "contact": "",
+     "level": 0,
+     "score": 58
   },
   // Additional records...
 ]
@@ -83,6 +84,7 @@ The script also provides an option to regenerate a summary of all generated cert
 To use the script, you must have a **JSON file with user data** structured according to the expected format (see [above](#output-format) for format details)
 and **JSON file with certification data** with format:
 ```json
+// certificate_info.json
 {
     "course": {
         "name": "Workshop: ELT with DLT",
@@ -123,7 +125,7 @@ python generate_certificates.py <users_file> <certificate_info_file> [options]
 Running the script with an example command:
 
 ```bash
-cd scripts && python generate_certificates.py test_users.json workshop_1_aug24/certificate_info.json -od ../certificates/technical_certification -r -osf ../README.md
+python generate_certificates.py test_users.json certificate_info.json -od ../certificates/technical_certification -r -osf ../temp.md
 ```
 
 This will read `test_users.json`, generate Markdown certificates for each user in the JSON file, 
@@ -172,20 +174,22 @@ Ensure your JSON file matches the structure as follows:
         "level": 3,
         "github": "https://github.com/alicejohnson",
         "contact": "https://www.linkedin.com/in/alicejohnson",
+        "email": "alice@gmail.com",
+        "score": 60,
         "course": {
-            "name": "Workshop: ELT with DLT",
-            "url": "https://github.com/dlt-hub/dlthub-education/tree/main/workshops/workshop_august_2024",
-            "image_url": "../badges/advanced_etl_specialist.png"
+            "name": "Course ELT with dlt: dlt Fundamentals",
+            "url": "https://github.com/dlt-hub/dlthub-education/tree/main/courses/dlt_fundamentals_dec_2024",
+            "image_url": "../badges/dlt_ELT_specialist.png"
         },
         "issuer": {
             "name": "dltHub",
             "url": "https://dlthub.com/"
         },
-        "certificate_name": "dlt Advanced ELT Specialist",
+        "certificate_name": "dlt ELT Specialist",
         "valid_until": "No expiration",
-        "certificate_id": "3951e4f32af466f7dfec5a1053f4d0ac5f2d7143c599d7ada2b6bff0e28e4521",
-        "certified_at": "September 2024",
-        "created_at": "2024-09-11T16:53:02.417924"
+        "certificate_id": "19e5930a90118a123b1b3f650d30d3b83c63a137714b294eaa6713c",
+        "certified_at": "March 2025",
+        "created_at": "2025-03-12T00:00:00+01:00"
     },
 ```
 

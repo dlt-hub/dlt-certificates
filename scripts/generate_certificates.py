@@ -3,53 +3,11 @@ import os
 from typing import List
 
 import pendulum
+from dotenv import load_dotenv
+from markdown_template import generate_markdown_certificate
 
 from generate_summary import create_summary_markdown
 from utils import generate_hash, read_jsonl, save_info_as_json
-
-SALT = os.getenv("SALT")
-
-stars = '<img src="../badges/star.png" width="48">'
-
-
-def generate_markdown_certificate(user_data: dict) -> str:
-    markdown_template = f"""
-# Certificate of Achievement: {user_data['certificate_name']}
-
-## Awarded to **{user_data['user_name']}**
-
-{user_data["level"]*stars}
-
-![Course Image]({user_data['course']['image_url']})
-
-### Certificate Details
-- **Certificate ID**: `{user_data['certificate_id']}`
-- **Certificate Holder ID**: `{user_data['certificate_holder_id']}`
-
-### Course Information
-- **Course**: [{user_data['course']['name']}]({user_data['course']['url']})
-
-### Issued by
-[**{user_data['issuer']['name']}**]({user_data['issuer']['url']}) 
-
-### Certification Period
-- **Issued**: {user_data['certified_at']}
-- **Valid Until**: {user_data['valid_until']}
-
----
-
-## Contact Information
-- **GitHub**: {user_data['github']}
-- **Contact**: {user_data['contact']}
-
-## Comments
-{user_data['user_name']} has successfully completed the {user_data['course']['name']}{user_data["level_comment"]}. We commend their dedication and expertise in the field.
-
----
-
-For more information, please visit [{user_data['issuer']['name']}]({user_data['issuer']['url']}).
-    """
-    return markdown_template
 
 
 def create_certificate_files(
@@ -69,11 +27,6 @@ def create_certificate_files(
             "%B %Y"
         )
         user_data["created_at"] = today.isoformat()
-
-        comment = ""
-        if user_data["level"] == 3:
-            comment = f" and demonstrated exceptional proficiency as a {user_data['certificate_name']}"
-        user_data["level_comment"] = comment
 
         markdown_content = generate_markdown_certificate(user_data)
 
@@ -95,6 +48,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "certificate_info_file", type=str, help="JSON file with certificate info"
     )
+    parser.add_argument("--env_path", default=".env", type=str, help="Env file path")
     parser.add_argument(
         "-od",
         "--output_directory",
@@ -117,6 +71,9 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
+    load_dotenv(args.env_path)
+    SALT = os.getenv("SALT")
+
     certificate_info = read_jsonl(args.certificate_info_file)
     users = read_jsonl(args.users_file)
 
@@ -129,7 +86,9 @@ if __name__ == "__main__":
         regenerate=args.regenerate,
     )
     print(f"{len(all_certificates_data)} certificates generated successfully.")
-    save_info_as_json(all_certificates_data, "./all_certificates_data.json")
+    save_info_as_json(
+        all_certificates_data, f"./all_certificates_data_{pendulum.now()}.json"
+    )
 
     import pandas
 
@@ -147,4 +106,6 @@ if __name__ == "__main__":
             "email",
         ),
     ]
-    df_part.to_csv(f"to_active_campaign_{pendulum.today()}.csv", index=False)
+    filepath = f"to_active_campaign_{pendulum.now()}.csv"
+    df_part.to_csv(filepath, index=False)
+    print(f"The file for activecampaign is located in: {filepath}")
