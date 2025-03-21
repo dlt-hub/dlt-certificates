@@ -22,7 +22,7 @@ def generate_users_info(user_data: Iterator, salt: str) -> List[Dict[str, Any]]:
 
     passed = df.loc[df["Score"] >= 61 * 0.7, :]
 
-    new = passed.loc[df["Timestamp"] > "2025-03-01T13:43:32+00:00", :]
+    new = passed.loc[df["Timestamp"] > "2025-03-12T17:00:00+00:00", :]
 
     personal_info = []
 
