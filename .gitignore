@@ -164,3 +164,10 @@ cython_debug/
 #creds
 /creds/dlthub-serviceAccount.json
 
+.DS_Store
+certificates/.DS_Store
+*.csv
+scripts/legacy
+scripts/data_engineering_with_python
+/scripts/dlt_advanced_2025/dlt_advanced_users.json
+/scripts/dlt_advanced_2025/all_certificates_data*
