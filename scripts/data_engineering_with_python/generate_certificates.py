@@ -4,10 +4,11 @@ from typing import List
 
 import pendulum
 from dotenv import load_dotenv
-from markdown_template import generate_markdown_certificate
-
-from generate_summary import create_summary_markdown
-from utils import generate_hash, read_jsonl, save_info_as_json
+import sys
+sys.path.append(os.path.abspath("../"))
+from legacy.markdown_template import generate_markdown_certificate
+from legacy.generate_summary import create_summary_markdown
+from legacy.utils import generate_hash, read_jsonl, save_info_as_json
 
 
 def create_certificate_files(
@@ -53,7 +54,7 @@ if __name__ == "__main__":
         "-od",
         "--output_directory",
         type=str,
-        default="../certificates/technical_certification",
+        default="../../certificates/technical_certification",
         help="Output file for generated certificates",
     )
     parser.add_argument(
@@ -66,7 +67,7 @@ if __name__ == "__main__":
         "-osf",
         "--output_summary_file",
         type=str,
-        default="../README.md",
+        default="../../README.md",
         help="Output file for generated certificates summary",
     )
     args = parser.parse_args()

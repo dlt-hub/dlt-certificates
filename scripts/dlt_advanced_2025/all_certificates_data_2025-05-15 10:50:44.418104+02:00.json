@@ -1,0 +1,266 @@
+[
+    {
+        "certificate_holder_id": "74d90ae5f87e50caa1dbf2e9913836cc4d0d466b7be140eb5f5d7edbce6dc862",
+        "user_name": "Maxime Lemaitre",
+        "passed_at": "2025-04-24T11:20:46+00:00",
+        "email": "maxime.lemaitre@gmail.com",
+        "level": 0,
+        "score": 45,
+        "github": "cybermaxs",
+        "contact": "",
+        "course": {
+            "name": "ELT with dlt: dlt Advanced",
+            "url": "https://github.com/dlt-hub/dlthub-education/tree/main/courses/dlt_advanced_2025",
+            "image_url": "../badges/dlt_ELT_specialist.png"
+        },
+        "issuer": {
+            "name": "dltHub",
+            "url": "https://dlthub.com/"
+        },
+        "certificate_name": "dlt Advanced ELT Specialist",
+        "valid_until": "No expiration",
+        "certificate_id": "216ba158d71be641f3aca2385d3f79a899c62e62f0a4262de7f7400b3dd90e77",
+        "certified_at": "April 2025",
+        "created_at": "2025-05-15T00:00:00+02:00"
+    },
+    {
+        "certificate_holder_id": "96e5e3a05f21dcc9e12092ac96634af6926ffa4528b938976851ff73064a2760",
+        "user_name": "Lenara Sitshayeva",
+        "passed_at": "2025-04-24T23:04:12+00:00",
+        "email": "sitshayeva@gmail.com",
+        "level": 0,
+        "score": 43,
+        "github": "https://github.com/sitshayeva",
+        "contact": "",
+        "course": {
+            "name": "ELT with dlt: dlt Advanced",
+            "url": "https://github.com/dlt-hub/dlthub-education/tree/main/courses/dlt_advanced_2025",
+            "image_url": "../badges/dlt_ELT_specialist.png"
+        },
+        "issuer": {
+            "name": "dltHub",
+            "url": "https://dlthub.com/"
+        },
+        "certificate_name": "dlt Advanced ELT Specialist",
+        "valid_until": "No expiration",
+        "certificate_id": "c79edfbd7375d9115113cf59a922a9c9ca6f2e5c7070874a022f9dc94e61954a",
+        "certified_at": "April 2025",
+        "created_at": "2025-05-15T00:00:00+02:00"
+    },
+    {
+        "certificate_holder_id": "b531cf19639d98c8773522c24730550fbd5602ad62ad06728483b260a4a0b7bd",
+        "user_name": "Youssef ZITOUNI",
+        "passed_at": "2025-04-29T10:24:31+00:00",
+        "email": "josef.zitouni2000@gmail.com",
+        "level": 0,
+        "score": 43,
+        "github": "yz-jz",
+        "contact": "",
+        "course": {
+            "name": "ELT with dlt: dlt Advanced",
+            "url": "https://github.com/dlt-hub/dlthub-education/tree/main/courses/dlt_advanced_2025",
+            "image_url": "../badges/dlt_ELT_specialist.png"
+        },
+        "issuer": {
+            "name": "dltHub",
+            "url": "https://dlthub.com/"
+        },
+        "certificate_name": "dlt Advanced ELT Specialist",
+        "valid_until": "No expiration",
+        "certificate_id": "64ee3318deb37e7f88cdc0016697a9be98ad0c5793ff960b2cc1c21fc2ad82d6",
+        "certified_at": "April 2025",
+        "created_at": "2025-05-15T00:00:00+02:00"
+    },
+    {
+        "certificate_holder_id": "575a4d9217b07948d8850349b75b4daf3accf7ca8e0abd40e5061eeaaa70bfcb",
+        "user_name": "Tanmay Nihore",
+        "passed_at": "2025-05-03T13:25:48+00:00",
+        "email": "tnihore.536@gmail.com",
+        "level": 0,
+        "score": 35,
+        "github": "https://github.com/Tanmaynihore",
+        "contact": "",
+        "course": {
+            "name": "ELT with dlt: dlt Advanced",
+            "url": "https://github.com/dlt-hub/dlthub-education/tree/main/courses/dlt_advanced_2025",
+            "image_url": "../badges/dlt_ELT_specialist.png"
+        },
+        "issuer": {
+            "name": "dltHub",
+            "url": "https://dlthub.com/"
+        },
+        "certificate_name": "dlt Advanced ELT Specialist",
+        "valid_until": "No expiration",
+        "certificate_id": "cf386fbb2d0c23ce7a3f242902bb728f56a01226b1a6421d4b822218e3c0ac3c",
+        "certified_at": "May 2025",
+        "created_at": "2025-05-15T00:00:00+02:00"
+    },
+    {
+        "certificate_holder_id": "035f06ae553931c7241cdd1c9447df8abba9582d75934aacab02050b2ff37896",
+        "user_name": "Nguyen Pham",
+        "passed_at": "2025-05-04T13:35:11+00:00",
+        "email": "phamhoannguyen@gmail.com",
+        "level": 0,
+        "score": 46,
+        "github": "github.com/n-pham",
+        "contact": "",
+        "course": {
+            "name": "ELT with dlt: dlt Advanced",
+            "url": "https://github.com/dlt-hub/dlthub-education/tree/main/courses/dlt_advanced_2025",
+            "image_url": "../badges/dlt_ELT_specialist.png"
+        },
+        "issuer": {
+            "name": "dltHub",
+            "url": "https://dlthub.com/"
+        },
+        "certificate_name": "dlt Advanced ELT Specialist",
+        "valid_until": "No expiration",
+        "certificate_id": "8acf3cfeb309dd6ba684ca84fe4d00bf903019835390958b4badec052d59098b",
+        "certified_at": "May 2025",
+        "created_at": "2025-05-15T00:00:00+02:00"
+    },
+    {
+        "certificate_holder_id": "3e3136c86f6d063f7807a1fb1d82fbd94a8e62e44b73de24f2dfb317e49f3c80",
+        "user_name": "Denis Krivenko",
+        "passed_at": "2025-05-04T15:52:59+00:00",
+        "email": "dnskrv88@gmail.com",
+        "level": 0,
+        "score": 48,
+        "github": "dnskr",
+        "contact": "",
+        "course": {
+            "name": "ELT with dlt: dlt Advanced",
+            "url": "https://github.com/dlt-hub/dlthub-education/tree/main/courses/dlt_advanced_2025",
+            "image_url": "../badges/dlt_ELT_specialist.png"
+        },
+        "issuer": {
+            "name": "dltHub",
+            "url": "https://dlthub.com/"
+        },
+        "certificate_name": "dlt Advanced ELT Specialist",
+        "valid_until": "No expiration",
+        "certificate_id": "d058f6e5b012bd4b0b65cca2d409cec4eed0fe5ce146dfc4b170e8eec1f9ecff",
+        "certified_at": "May 2025",
+        "created_at": "2025-05-15T00:00:00+02:00"
+    },
+    {
+        "certificate_holder_id": "2f6582a628173dbe3b899b521377cb9852bbb35761178a99d452267a9f5a75ea",
+        "user_name": "THORAVAL Xavier",
+        "passed_at": "2025-05-05T22:15:39+00:00",
+        "email": "xavier.thoraval@lobellia.fr",
+        "level": 0,
+        "score": 46,
+        "github": "",
+        "contact": "",
+        "course": {
+            "name": "ELT with dlt: dlt Advanced",
+            "url": "https://github.com/dlt-hub/dlthub-education/tree/main/courses/dlt_advanced_2025",
+            "image_url": "../badges/dlt_ELT_specialist.png"
+        },
+        "issuer": {
+            "name": "dltHub",
+            "url": "https://dlthub.com/"
+        },
+        "certificate_name": "dlt Advanced ELT Specialist",
+        "valid_until": "No expiration",
+        "certificate_id": "be4041f5ccf3545e2ca2e6f9be887e8f69a3faa962625694f73a185db80efeea",
+        "certified_at": "May 2025",
+        "created_at": "2025-05-15T00:00:00+02:00"
+    },
+    {
+        "certificate_holder_id": "aee189423a12771ba04627aad71341ab03efbd5616e0f0136e7e402d21d7eca2",
+        "user_name": "Joyan Bhathena",
+        "passed_at": "2025-05-09T15:35:55+00:00",
+        "email": "joyansbhathena@gmail.com",
+        "level": 0,
+        "score": 46,
+        "github": "joyan9",
+        "contact": "",
+        "course": {
+            "name": "ELT with dlt: dlt Advanced",
+            "url": "https://github.com/dlt-hub/dlthub-education/tree/main/courses/dlt_advanced_2025",
+            "image_url": "../badges/dlt_ELT_specialist.png"
+        },
+        "issuer": {
+            "name": "dltHub",
+            "url": "https://dlthub.com/"
+        },
+        "certificate_name": "dlt Advanced ELT Specialist",
+        "valid_until": "No expiration",
+        "certificate_id": "0ab08ac4382607a5f0cd44fbd507c2980f99b713b92b3b192578687d00a964ab",
+        "certified_at": "May 2025",
+        "created_at": "2025-05-15T00:00:00+02:00"
+    },
+    {
+        "certificate_holder_id": "5f919205919b7795d582080471f1b8bad66c8a4ff5ac6e0ce9c0a3922b394808",
+        "user_name": "Jericho Arcelao",
+        "passed_at": "2025-05-10T13:34:01+00:00",
+        "email": "jerichoarcelao@gmail.com",
+        "level": 0,
+        "score": 45,
+        "github": "",
+        "contact": "",
+        "course": {
+            "name": "ELT with dlt: dlt Advanced",
+            "url": "https://github.com/dlt-hub/dlthub-education/tree/main/courses/dlt_advanced_2025",
+            "image_url": "../badges/dlt_ELT_specialist.png"
+        },
+        "issuer": {
+            "name": "dltHub",
+            "url": "https://dlthub.com/"
+        },
+        "certificate_name": "dlt Advanced ELT Specialist",
+        "valid_until": "No expiration",
+        "certificate_id": "c9f716a732de459d049e14e49cd8094f4176321dea4a1172c9487e8c0ba20a00",
+        "certified_at": "May 2025",
+        "created_at": "2025-05-15T00:00:00+02:00"
+    },
+    {
+        "certificate_holder_id": "1d6f8b0774f2a0873c86d11af9bed84b4db2de4704fba8421eda68306297150c",
+        "user_name": "José Luis Roselló Ferrer",
+        "passed_at": "2025-05-11T00:42:02+00:00",
+        "email": "jose.luis.rosello.ferrer@gmail.com",
+        "level": 0,
+        "score": 46,
+        "github": "",
+        "contact": "",
+        "course": {
+            "name": "ELT with dlt: dlt Advanced",
+            "url": "https://github.com/dlt-hub/dlthub-education/tree/main/courses/dlt_advanced_2025",
+            "image_url": "../badges/dlt_ELT_specialist.png"
+        },
+        "issuer": {
+            "name": "dltHub",
+            "url": "https://dlthub.com/"
+        },
+        "certificate_name": "dlt Advanced ELT Specialist",
+        "valid_until": "No expiration",
+        "certificate_id": "e2964516f4e7077effa4e495b2639c347af33d86a3bd7b580aa5d0e806823f3a",
+        "certified_at": "May 2025",
+        "created_at": "2025-05-15T00:00:00+02:00"
+    },
+    {
+        "certificate_holder_id": "6b7b8b99b6d5d4cf301dc26802ca479c12ba5856768bf48830d5bad4a508c3db",
+        "user_name": "Joe Anselm Yong Zhen",
+        "passed_at": "2025-05-14T01:46:34+00:00",
+        "email": "joeanselmyz@gmail.com",
+        "level": 0,
+        "score": 45,
+        "github": "itsmejoeyong",
+        "contact": "",
+        "course": {
+            "name": "ELT with dlt: dlt Advanced",
+            "url": "https://github.com/dlt-hub/dlthub-education/tree/main/courses/dlt_advanced_2025",
+            "image_url": "../badges/dlt_ELT_specialist.png"
+        },
+        "issuer": {
+            "name": "dltHub",
+            "url": "https://dlthub.com/"
+        },
+        "certificate_name": "dlt Advanced ELT Specialist",
+        "valid_until": "No expiration",
+        "certificate_id": "8948a63f56144394720207983d863e426b1475013d179974e16ffe6294e87d05",
+        "certified_at": "May 2025",
+        "created_at": "2025-05-15T00:00:00+02:00"
+    }
+]

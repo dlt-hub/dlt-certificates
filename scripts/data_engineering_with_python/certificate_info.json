@@ -1,0 +1,10 @@
+{
+    "course": {
+        "name": "Data Engineering with Python and AI/LLMs",
+        "url": "https://github.com/dlt-hub/dlthub-education/tree/main/courses/freecodecamp/de_with_dlt_2025",
+        "image_url": "../badges/dlt_ELT_specialist.png"
+    },
+    "issuer": {"name": "dltHub", "url": "https://dlthub.com/"},
+    "certificate_name": "Master of ELT Best Practices",
+    "valid_until": "No expiration"
+}

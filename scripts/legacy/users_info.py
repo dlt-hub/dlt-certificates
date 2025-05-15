@@ -39,7 +39,7 @@ def generate_users_info(user_data: Iterator, salt: str) -> List[Dict[str, Any]]:
                 "Your GitHub account username. This information will be displayed on your certificate. (Optional)"
             ],
             "contact": row[
-                "Your Contacts (e.g. link to Linkedin, email, etc.). This information will be displayed on your certificate. (Optional)\n"
+                "Your Contacts (e.g. link to Linkedin, email, etc.). This information will be displayed on your certificate. (Optional)"
             ],
             "level": 0,
             "score": row["Score"],

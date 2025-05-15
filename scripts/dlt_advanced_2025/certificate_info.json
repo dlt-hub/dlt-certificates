@@ -1,0 +1,10 @@
+{
+    "course": {
+        "name": "ELT with dlt: dlt Advanced",
+        "url": "https://github.com/dlt-hub/dlthub-education/tree/main/courses/dlt_advanced_2025",
+        "image_url": "../badges/dlt_ELT_specialist.png"
+    },
+    "issuer": {"name": "dltHub", "url": "https://dlthub.com/"},
+    "certificate_name": "dlt Advanced ELT Specialist",
+    "valid_until": "No expiration"
+}

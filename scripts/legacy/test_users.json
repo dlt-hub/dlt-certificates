@@ -4,6 +4,8 @@
     "user_name": "Alice Johnson",
     "level": 3,
     "github": "https://github.com/alicejohnson",
+    "passed_at": "2025-05-14T11:20:03+00:00",
+    "email": "alice@gmail.com",
     "contact": "https://www.linkedin.com/in/alicejohnson"
   },
   {
@@ -11,6 +13,8 @@
     "user_name": "Bob Smith",
     "level": 3,
     "github": "https://github.com/bobsmith",
+    "passed_at": "2025-05-14T11:20:03+00:00",
+    "email": "bob@gmail.com",
     "contact": "https://www.linkedin.com/in/bobsmith"
   },
   {
@@ -18,6 +22,8 @@
     "user_name": "Cindy Lee",
     "level": 3,
     "github": "https://github.com/cindylee",
+    "passed_at": "2025-05-14T11:20:03+00:00",
+    "email": "cindy@gmail.com",
     "contact": "https://www.linkedin.com/in/cindylee"
   }
 ]
