@@ -1,0 +1,10 @@
+{
+    "course": {
+        "name": "Build secure code-first data pipelines in Microsoft Fabric",
+        "url": "https://www.youtube.com/live/wca8DnKucBM",
+        "image_url": "../badges/dlt_microsoft_fabric_specialist_badge.png"
+    },
+    "issuer": {"name": "dltHub", "url": "https://dlthub.com/"},
+    "certificate_name": "dlt Microsoft Fabric Specialist",
+    "valid_until": "No expiration"
+}
