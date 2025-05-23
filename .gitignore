@@ -165,4 +165,6 @@ creds/
 *.csv
 all_certificates_data*.json
 dlt_*_users.json
+.python-version
 .DS_Store
+users_info.json

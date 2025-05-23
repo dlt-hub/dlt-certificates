@@ -3,7 +3,7 @@
 
 ## Awarded to **THORAVAL Xavier**
 
-![Course Image](../badges/dlt_ELT_specialist.png)
+![Course Image](../badges/advanced_etl_specialist.png)
 
 ### Certificate Details
 - **Certificate ID**: `1beca4e9ae50b35dbd2abdd5ba6ffb7fb231bccc8cfdf1ddc9c8adf6549820dc`
