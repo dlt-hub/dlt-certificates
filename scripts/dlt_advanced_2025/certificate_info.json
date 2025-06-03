@@ -2,7 +2,7 @@
     "course": {
         "name": "Course ELT with dlt: dlt Advanced",
         "url": "https://github.com/dlt-hub/dlthub-education/tree/main/courses/dlt_advanced_2025",
-        "image_url": "../badges/dlt_ELT_specialist.png"
+        "image_url": "../badges/advanced_etl_specialist.png"
     },
     "issuer": {"name": "dltHub", "url": "https://dlthub.com/"},
     "certificate_name": "dlt ELT Advanced Specialist",
