@@ -45,7 +45,7 @@ def generate_users_info(user_data: Iterator, salt: str) -> List[Dict[str, Any]]:
     passed = df.loc[df["Score"] >= passing_threshold, :]
 
     # You can adjust the date filter as needed for your course
-    new = passed.loc[df["Timestamp"] > "2025-03-21T13:00:00+00:00", :]
+    new = passed.loc[df["Timestamp"] > "2025-05-22T13:00:00+00:00", :]
 
     personal_info = []
 
