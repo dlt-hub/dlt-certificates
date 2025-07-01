@@ -1,0 +1,10 @@
+{
+    "course": {
+        "name": "Data Engineering with Python and AI/LLMs",
+        "url": "https://www.youtube.com/watch?v=T23Bs75F7ZQ",
+        "image_url": "../badges/dlt_master_elt_best_practices_badge.png"
+    },
+    "issuer": {"name": "dltHub", "url": "https://dlthub.com/"},
+    "certificate_name": "Master of ELT Best Practices",
+    "valid_until": "No expiration"
+}
