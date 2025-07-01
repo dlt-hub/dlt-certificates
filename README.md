@@ -366,3 +366,4 @@
 | 447f5b85bae1118293a399726c8c0c96ade460e0a766774c3da39e6456a109ff | 5fc1cf56bcd0a297b42f3c2872e5bb85f6c38bd6f30cfd4476f4c3b7e27bd220 | DEVANSHI PANCHAL | Master of ELT Best Practices |  | June 2025 | No expiration | devanshipanchal | https://www.linkedin.com/in/devanshi-panchal-77968a18b/ |
 | 02c82a3bb292167ede790745b8a663e2d1c22d703e49f1fc8cbf26369730bad3 | 44341065ba4870f4259ffe78a3f65f31c271b0b3021b0f1f75f96a1ba8f275ca | R Kranthi Kiran | Master of ELT Best Practices |  | June 2025 | No expiration |  |  |
 | afbd9328474277b3345909d8e0da755162c8f40631803a0205912b06427a4770 | fdc49e18f732812a3892c9b40296b7994f884ba718b1560132f4eccc92fa5ff4 | Alexander Mora Araya | Master of ELT Best Practices |  | June 2025 | No expiration |  |  |
+| d07fccc0a1e2025c1c43821c35c66559b7f19e926b74c34ffbc79e768deeb6fc | 3a32e1c67f4518797611c30bd45460655ae5ffab4a9694c4870c1cd19a6bfc42 | Katie Jeffree | dlt ELT Specialist |  | June 2025 | No expiration |  |  |
