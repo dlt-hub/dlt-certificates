@@ -1,6 +1,7 @@
 import argparse
 import json
 from typing import List
+import pandas as pd
 
 stars = '<img src="certificates/badges/star.png" width="15">'
 
@@ -14,15 +15,37 @@ def create_summary_markdown(
         # If regenerating, we write the headers first
         if regenerate:
             file.write("# Certificates\n\n")
+            # Fix header lines to have no extra spaces
             file.write(
-                "| Certificate ID | Certificate Holder ID | Holder Name | Certificate Name | Level | Certified at | Valid Until | Holder GitHub | Contacts |\n"
+                "|Certificate ID|Certificate Holder ID|Holder Name|Certificate Name|Level|Certified at|Valid Until|Holder GitHub|Contacts|\n"
             )
-            file.write("| --- | --- | --- | --- | --- | --- | --- | --- | --- |\n")
+            file.write("|---|---|---|---|---|---|---|---|---|\n")
 
         # Write data for each certificate holder
         for data in certificate_data:
+            # Handle NaN values and ensure proper string formatting
+            github = data.get('github', '')
+            contact = data.get('contact', '')
+            
+            # Convert NaN to empty string
+            if pd.isna(github) or github == 'nan':
+                github = ''
+            if pd.isna(contact) or contact == 'nan':
+                contact = ''
+                
+            # Ensure proper string formatting
+            if isinstance(github, str):
+                github = github.strip()
+            if isinstance(contact, str):
+                contact = contact.strip()
+                
+            # Handle level value
+            level = data.get('level', 0)
+            if pd.isna(level):
+                level = 0
+                
             file.write(
-                f"| {data['certificate_id']} | {data['certificate_holder_id']} | {data['user_name']} | {data['certificate_name']} | {stars * data['level']} | {data['certified_at']} | {data['valid_until']} | {data['github']} | {data['contact']} |\n"
+                f"|{data['certificate_id']}|{data['certificate_holder_id']}|{data['user_name']}|{data['certificate_name']}|{stars * level}|{data['certified_at']}|{data['valid_until']}|{github}|{contact}|\n"
             )
 
 
