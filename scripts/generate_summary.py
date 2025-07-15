@@ -15,11 +15,11 @@ def create_summary_markdown(
         # If regenerating, we write the headers first
         if regenerate:
             file.write("# Certificates\n\n")
-            # Fix header lines to have no extra spaces
+            # Add spaces between pipe characters and content for better readability
             file.write(
-                "|Certificate ID|Certificate Holder ID|Holder Name|Certificate Name|Level|Certified at|Valid Until|Holder GitHub|Contacts|\n"
+                "| Certificate ID | Certificate Holder ID | Holder Name | Certificate Name | Level | Certified at | Valid Until | Holder GitHub | Contacts |\n"
             )
-            file.write("|---|---|---|---|---|---|---|---|---|\n")
+            file.write("| --- | --- | --- | --- | --- | --- | --- | --- | --- |\n")
 
         # Write data for each certificate holder
         for data in certificate_data:
@@ -44,8 +44,9 @@ def create_summary_markdown(
             if pd.isna(level):
                 level = 0
                 
+            # Add spaces between pipe characters and content for better readability
             file.write(
-                f"|{data['certificate_id']}|{data['certificate_holder_id']}|{data['user_name']}|{data['certificate_name']}|{stars * level}|{data['certified_at']}|{data['valid_until']}|{github}|{contact}|\n"
+                f"| {data['certificate_id']} | {data['certificate_holder_id']} | {data['user_name']} | {data['certificate_name']} | {stars * level} | {data['certified_at']} | {data['valid_until']} | {github} | {contact} |\n"
             )
 
 
