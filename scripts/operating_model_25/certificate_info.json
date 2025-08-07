@@ -2,7 +2,7 @@
     "course": {
         "name": "Designing and scaling a data operating model",
         "url": "https://www.youtube.com/live/CMXm-7x0290",
-        "image_url": "../badges/Data_Ops_Specialist.png"
+        "image_url": "../badges/Data_Op_Model_Spec.png"
     },
     "issuer": {"name": "dltHub", "url": "https://dlthub.com/"},
     "certificate_name": "Data Operating Model Specialist",
